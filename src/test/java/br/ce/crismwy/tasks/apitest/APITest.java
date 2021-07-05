@@ -27,13 +27,13 @@ public class APITest {
 	@Test
 	public void deveAdicionarTarefaComSucesso() {
 		RestAssured.given()
-			.body("{ \"task\": \"Teste via API\", \"dueDate\": \"2020-12-30\" }").contentType(ContentType.JSON)
-			.log().all()
+			.body("{ \"task\": \"Teste via API\", \"dueDate\": \"2030-12-30\" }").contentType(ContentType.JSON)
+			//.log().all()
 		.when()
 			.post("/todo")
 		.then()
 			.statusCode(201)
-			.log().all()
+			//.log().all()
 			;
 	}
 	
@@ -41,14 +41,14 @@ public class APITest {
 	public void naoDeveAdicionarTarefaInvalida() {
 		RestAssured.given()
 			.body("{ \"task\": \"Teste via API\", \"dueDate\": \"2010-12-30\" }").contentType(ContentType.JSON)
-			.log().all()
+			//.log().all()
 		.when()
 			.post("/todo")
 		.then()
-			.log().all()
+			//.log().all()
 			.statusCode(400)
 			.body("message", CoreMatchers.is("Due date must not be in past"))
-			.log().all()
+			//.log().all()
 			;
 	}
 }
